@@ -12,6 +12,10 @@ SRC_DIR="$(cd "$(dirname "$0")/spk/icloudphotosync/src" && pwd)"
 BUILD_DIR="$(cd "$(dirname "$0")" && pwd)/build"
 OUT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+echo "==> Checking source syntax (offline)..."
+python3 -m compileall -q "$SRC_DIR/bin" "$SRC_DIR/lib"
+sh -n "$SRC_DIR/service-setup.sh"
+
 rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"/{staging,scripts,conf}
 
